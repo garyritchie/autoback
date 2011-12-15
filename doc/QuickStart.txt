@@ -1,0 +1,30 @@
+AUTOBACK QUICKSTART
+
+So, you want to back up your files?
+
+NEW INSTALL: Follow these steps for a NEW installation only.
+1. It's recommended you have a dedicated local physical drive, mapped with a letter, such as T:
+
+2. Move or copy the distribution folder AUTOBACK, and its contents, to T:/ so it looks like this:
+	T:/autobacktm
+	T:/autobacktm/bin
+	T:/autobacktm/conf
+	T:/autobacktm/store
+
+3. Get Cygwin: http://www.cygwin.com/setup.exe
+	a. During install, use the defaults, if you wish.
+	b. When confronted with the packages screen. View by name and install rsync.
+
+4. Open Control Panel --> Scheduled Tasks and set desired repeating event to launch (WindowsXP):
+	T:/autobacktm/bin/autobacktmstarter.bat
+
+5. Edit T:/autobacktm/conf/backup_exclude.conf as desired. It should already contain some settings that you may or may not want.
+
+UPGRADING
+You should only need to replace autobacktm.sh and autobacktmstarter.bat
+
+HELP
+Check documentation periodically for new info as this is being developed.
+
+Use http://code.google.com/p/autoback site for support.
+
