@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## Get the latest version of this script and example configuration files from:
-	## bzr checkout http://clients.cinemanix.com/bzr/autobacktm
+	## http://code.google.com/p/autoback/
 
 ## autobacktm.sh is a TimeMachine-like backup script. It expects the following folder structure on a dedicated backup drive or partition:
 	# T:/AUTOBACKTM				<-- Everything tidily kept in one directory.
@@ -15,7 +15,7 @@
 	## RsyncX if running on Mac. WARNING: Not tested on Mac!
 
 ## SETUP for WINDOWS:
-	## Point Control Panel --> Scheduled Tasks to T:/AUTOBACKTM/BIN/autobacktmstarter.bat
+	## Point Control Panel --> Scheduled Tasks to T:/AUTOBACKTM/BIN/autoback_starter.bat
 
 ## IF you are a multi-boot machine: You have to set aliases in cygwin to match linux directories. In a Cygwin bash terminal window type:
 	## $ mkdir /media
@@ -26,19 +26,19 @@
 ## - - - - - SET YOUR OPTIONS 1-4 BELOW. Comment/uncomment as necessary...
 ## 1 - - - - Backup storage location - - - - 
 #AUTOBACKTM=/media/FNTM250TM/AUTOBACKTM/STORE 		## MULTI-BOOT cxmacwin01 (cygwin alias set)
-AUTOBACKTM=/cygdrive/t/AUTOBACKTM/STORE		 	## cxmacwin01 - Windows only. Set dedicated backup drive to T:.
+AUTOBACKTM=/cygdrive/z/BACKUP/autoback		 	## cxmacwin01 - Windows only. Set dedicated backup drive to T:.
 # AUTOBACKTM=/home/Gary/Desktop/test/AUTOBACKTM	## TEST @ home only!
 STORE=$AUTOBACKTM/STORE
 
 ## 2 - - - - ONE source can be listed here - - - -
 #SOURCE=/media/Production				## MULTI-BOOT (cygwin alias set)
-SOURCE=/cygdrive/g/						## Windows only. Production drive G: must be set.
+SOURCE=/cygdrive/c/Users/gritchie/						## Windows only
 
 ## 3 - - - - Include what from SOURCE above? - - - -
-INCLUDES=$AUTOBACKTM/CONF/backup_include.conf	## /CX_PRODUCTION and /CX_PROJECTS (do not change.)
+INCLUDES=$AUTOBACKTM/conf/backup_include.conf
 
 ## 4 - - - - got anything to leave out? - - - - - 
-EXCLUDES=$AUTOBACKTM/CONF/backup_exclude.conf	## Edit this file. Not everything needs to be safeguarded.
+EXCLUDES=$AUTOBACKTM/conf/backup_exclude.conf	## Edit this file. Not everything needs to be safeguarded.
 
 echo Source: $SOURCE
 echo Store: $STORE
