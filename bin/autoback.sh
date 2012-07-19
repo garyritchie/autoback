@@ -55,7 +55,7 @@ RSYNC=/usr/bin/rsync;
 
 date=`$DATE "+%Y%m%d-%H%M%S"`
 
-$RSYNC -rltDhv --delete-after --delete-excluded --stats --progress --modify-window=2 \
+$RSYNC -rltDHhv --delete-after --delete-excluded --stats --progress --modify-window=2 \
 	--exclude-from="$EXCLUDES" \
 	--include-from="$INCLUDES" \
 	--link-dest=$STORE/RECENT \
