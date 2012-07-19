@@ -26,25 +26,25 @@
 ## - - - - - SET YOUR OPTIONS 1-4 BELOW. Comment/uncomment as necessary...
 ## 1 - - - - Backup storage location - - - - 
 #AUTOBACKTM=/media/FNTM250TM/AUTOBACKTM/STORE 		## MULTI-BOOT cxmacwin01 (cygwin alias set)
-AUTOBACKTM=/cygdrive/z/BACKUP/autoback		 	## cxmacwin01 - Windows only. Set dedicated backup drive to T:.
+AUTOBACK=/cygdrive/z/BACKUP/autoback		 	## cxmacwin01 - Windows only. Set dedicated backup drive to T:.
 # AUTOBACKTM=/home/Gary/Desktop/test/AUTOBACKTM	## TEST @ home only!
-STORE=$AUTOBACKTM/STORE
+STORE=$AUTOBACK/STORE
 
 ## 2 - - - - ONE source can be listed here - - - -
 #SOURCE=/media/Production				## MULTI-BOOT (cygwin alias set)
 SOURCE=/cygdrive/c/Users/gritchie/						## Windows only
 
 ## 3 - - - - Include what from SOURCE above? - - - -
-INCLUDES=$AUTOBACKTM/conf/backup_include.conf
+INCLUDES=$AUTOBACK/conf/backup_include.conf
 
 ## 4 - - - - got anything to leave out? - - - - - 
-EXCLUDES=$AUTOBACKTM/conf/backup_exclude.conf	## Edit this file. Not everything needs to be safeguarded.
+EXCLUDES=$AUTOBACK/conf/backup_exclude.conf	## Edit this file. Not everything needs to be safeguarded.
 
 echo Source: $SOURCE
 echo Store: $STORE
 echo Includes: $INCLUDES
 echo Excludes: $EXCLUDES
-sleep 3
+/usr/bin/sleep 3
 
 ## DO NOT EDIT BELOW THIS LINE - - - - - - - - - - - - - - - - --
 ## ------------- system commands used by this script --------------------
@@ -55,19 +55,14 @@ RSYNC=/usr/bin/rsync;
 
 date=`$DATE "+%Y%m%d-%H%M%S"`
 
-## TODO: LINUX: Test --modify-window. When rsyncing in cygwin after a linux rsync the entire drectory is synced. Subsequent backups are properly linked.
-
-#mkdir $STORE/$date
-#touch $STORE/$date/autobacktm.log
-
 $RSYNC -rltDhv --delete-after --delete-excluded --stats --progress --modify-window=2 \
 	--exclude-from="$EXCLUDES" \
 	--include-from="$INCLUDES" \
 	--link-dest=$STORE/RECENT \
 	$SOURCE $STORE/$date \
-	--log-file=$STORE/$date"_autobacktm.log"
+	--log-file=$STORE/$date"_autoback.log"
 
 $RM -r $STORE/RECENT
 
 ## NOTE: links do not work on vfat!
-$LN -s $date $STORE/RECENT
+$LN -sfv $STORE/$date $STORE/RECENT
