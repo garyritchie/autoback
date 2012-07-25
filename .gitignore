@@ -1,1 +1,4 @@
 STORE
+autoback_session
+backup_exclude.conf
+backup_include.conf
